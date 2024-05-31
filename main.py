@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from morse import generate_morse
 
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
@@ -38,19 +38,19 @@ ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 
-
-
 @app.route('/')
 def main_page():
-    return render_template("index.html",)
+    return render_template("index.html", )
 
-@app.route('/projects/morse')
+
+@app.route('/projects/morse', methods=["GET", "POST"])
 def morse_project():
-    return render_template("morse.html",)
-
-
+    if request.method == 'POST':
+        user_input = request.form['morse_input']
+        morse_code = generate_morse(user_input)
+        return render_template("morse.html",user_input=user_input, morse_output=morse_code)
+    return render_template("morse.html")
 
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
-

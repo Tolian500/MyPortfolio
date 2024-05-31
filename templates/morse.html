@@ -4,23 +4,23 @@
 <div class = "container">
   <h1>Morse Code Generator</h1>
   <section class="w-100 p-4 d-flex justify-content-center pb-4">
-        <form style="width: 26rem;">
+        <form action="/projects/morse" method="post" style="width: 26rem;">
           <!-- Name input -->
           <div data-mdb-input-init="" class="form-outline mb-2" data-mdb-input-initialized="true">
-            <input type="text" id="form4Example1" class="form-control">
-            <label class="form-label" for="form4Example1" style="margin-left: 0px;">Write text you want to be converted</label>
+            <input type="text" id="morse_input" name="morse_input" class="form-control" value="{{user_input}}">
+            <label class="form-label" for="morse_input" style="margin-left: 0px;">Write text you want to be converted</label>
           <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
 
                     <!-- Submit button -->
-        <button data-mdb-ripple-init="" type="button" class="btn btn-primary btn-block mb-4" style="width: 100%;">Convert to Morse Code</button>
+        <button data-mdb-ripple-init="" type="submit" class="btn btn-primary btn-block mb-4" style="width: 100%;">Convert to Morse Code</button>
 
 
           <!-- Message input -->
-          <div data-mdb-input-init="" class="form-outline mb-4" data-mdb-input-initialized="true">
-            <lt-mirror contenteditable="false" style="display: none;" data-lt-linked="1"><lt-highlighter contenteditable="false" style="display: none;"><lt-div spellcheck="false" class="lt-highlighter__wrapper" style="width: 416px !important; height: 112.602px !important; transform: none !important; transform-origin: 208px 56.3047px !important; zoom: 1 !important;"><lt-div class="lt-highlighter__scroll-element" style="top: 0px !important; left: 0px !important; width: 416px !important; height: 112.602px !important;"></lt-div></lt-div></lt-highlighter><lt-div spellcheck="false" class="lt-mirror__wrapper notranslate" data-lt-scroll-top="0" data-lt-scroll-left="0" data-lt-scroll-top-scaled="0" data-lt-scroll-left-scaled="0" data-lt-scroll-top-scaled-and-zoomed="0" data-lt-scroll-left-scaled-and-zoomed="0" style="border: 0px none rgb(255, 255, 255) !important; border-radius: 4px !important; direction: ltr !important; font: 400 16px / 1.6 Roboto, sans-serif !important; font-synthesis: weight style small-caps !important; hyphens: manual !important; letter-spacing: normal !important; line-break: auto !important; margin: 0px !important; padding: 5.12px 12px !important; text-align: start !important; text-decoration: none solid rgb(255, 255, 255) !important; text-indent: 0px !important; text-rendering: auto !important; text-transform: none !important; transform: none !important; transform-origin: 208px 56.3047px !important; unicode-bidi: normal !important; white-space: pre-wrap !important; word-spacing: 0px !important; overflow-wrap: break-word !important; writing-mode: horizontal-tb !important; zoom: 1 !important; -webkit-locale: &quot;en&quot; !important; -webkit-rtl-ordering: logical !important; width: 392px !important; height: 102.369px !important;"><lt-div class="lt-mirror__canvas" style="margin-top: 0px !important; margin-left: 0px !important; width: 392px !important; height: 102.76px !important;"><lt-span></lt-span></lt-div></lt-div></lt-mirror><textarea class="form-control" id="form4Example3" rows="4" data-lt-tmp-id="lt-191250" spellcheck="false" data-gramm="false"></textarea>
-            <label class="form-label" for="form4Example3" style="margin-left: 0px;">Your Morse Code</label>
-          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
+           <div data-mdb-input-init="" class="form-outline mb-2" data-mdb-input-initialized="true">
+            <input type="text" id="morse_output" name="morse_input" class="form-control" value="{{morse_output}}">
+            <label class="form-label" for="morse_input" style="margin-left: 0px;">Converted morse code</label>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
 
 
