@@ -44,6 +44,10 @@ Bootstrap5(app)
 def main_page():
     return render_template("index.html",)
 
+@app.route('/projects/morse')
+def morse_project():
+    return render_template("morse.html",)
+
 
 
 
