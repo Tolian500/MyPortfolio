@@ -15,7 +15,6 @@ morse_code_dict = {
 
 
 def generate_morse(input_text: str):
-    # Example usage:
     input_text = input_text.upper()
     morse_code = ' '.join(morse_code_dict[char] for char in input_text if char in morse_code_dict)
     return morse_code
