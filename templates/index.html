@@ -1,23 +1,24 @@
 {% include "header.html" %}
 
-  <div class="container px-4 py-5" id="custom-cards">
+<div class="container px-4 py-5" id="custom-cards">
     <h1 class="pb-1">Hey, I'm Anatolii Olenchuk: </h1>
     <p class="pb-1">Freelance Creative & Professional Python Developer: </p>
 
 
-
+    <!--MORSE CODE PROJECT-->
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
         <div class="col">
             <a href="{{url_for('morse_project')}}" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                    style="background-image: url('https://images.unsplash.com/photo-1568258805731-c117485e50c2');
+                     style="background-image: url('https://images.unsplash.com/photo-1568258805731-c117485e50c2');
                         background-size: cover;
                         background-position: center;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                         <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Morse code generator</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
+                                     class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
                                 <i class="bi bi-geo-fill me-2" style="font-size: 1em;"></i>
@@ -33,15 +34,19 @@
             </a>
         </div>
 
+        <!--        WEBSITE PROJECT-->
         <div class="col">
             <a href="your-link-here.html" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                    style="background-image: url('static/assets/img/img2.JPG');">
+                     style="background-image: url('https://images.unsplash.com/photo-1548502499-ef49e8cf98d4');
+background-size: cover;
+                        background-position: center;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Website example (in progress)</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
+                                     class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
                                 <i class="bi bi-geo-fill me-2" style="font-size: 1em;"></i>
@@ -56,16 +61,19 @@
                 </div>
             </a>
         </div>
-
+        <!--TIC TOC GAME-->
         <div class="col">
-            <a href="your-link-here.html" class="text-decoration-none">
+            <a href="{{url_for('tictactoe_game')}}" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                    style="background-image: url('static/assets/img/img3.JPG');">
+                     style="background-image: url('static/assets/img/TicTocCover.png');
+background-size: cover;
+                        background-position: center;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">TIC TOC GAME</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
+                                     class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
                                 <i class="bi bi-geo-fill me-2" style="font-size: 1em;"></i>
@@ -88,66 +96,74 @@
 
 <!--FEATURES-->
 <div class="container px-4 py-5" id="icon-grid">
-  <h2 class="pb-2 border-bottom">My Services</h2>
+    <h2 class="pb-2 border-bottom">My Services</h2>
 
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-globe text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Web Development</h3>
-        <p>Building and maintaining websites and web applications using Python frameworks like Django and Flask to deliver dynamic and responsive user experiences.</p>
-      </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-globe text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Web Development</h3>
+                <p>Building and maintaining websites and web applications using Python frameworks like Django and Flask
+                    to deliver dynamic and responsive user experiences.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-bar-chart text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Data Science</h3>
+                <p>Analyzing and interpreting complex datasets to extract meaningful insights and drive informed
+                    decision-making through statistical analysis and machine learning techniques.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-box-arrow-down text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Web Scraping</h3>
+                <p>Extracting data from websites using Python libraries like BeautifulSoup and Selenium to gather and
+                    process information for various applications.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-cpu text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Machine Learning</h3>
+                <p>Developing algorithms that enable computers to learn from and make predictions based on data,
+                    utilizing frameworks such as TensorFlow and Scikit-learn.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-gear text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Automation</h3>
+                <p>Creating scripts and tools to automate repetitive tasks, improving efficiency and productivity in
+                    various workflows and processes.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-controller text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Game Development</h3>
+                <p>Designing and programming interactive games, leveraging Python libraries like Pygame to bring
+                    engaging and immersive gaming experiences to life.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-diagram-3 text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">DevOps</h3>
+                <p>Managing the deployment, operations, and monitoring of applications by implementing continuous
+                    integration and continuous deployment (CI/CD) pipelines and infrastructure as code (IaC).</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <i class="bi bi-database text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+            <div>
+                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Data Engineering</h3>
+                <p>Building and maintaining data processing systems and pipelines to ensure the efficient and reliable
+                    flow of data across various platforms and applications.</p>
+            </div>
+        </div>
     </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-bar-chart text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Data Science</h3>
-        <p>Analyzing and interpreting complex datasets to extract meaningful insights and drive informed decision-making through statistical analysis and machine learning techniques.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-box-arrow-down text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Web Scraping</h3>
-        <p>Extracting data from websites using Python libraries like BeautifulSoup and Selenium to gather and process information for various applications.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-cpu text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Machine Learning</h3>
-        <p>Developing algorithms that enable computers to learn from and make predictions based on data, utilizing frameworks such as TensorFlow and Scikit-learn.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-gear text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Automation</h3>
-        <p>Creating scripts and tools to automate repetitive tasks, improving efficiency and productivity in various workflows and processes.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-controller text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Game Development</h3>
-        <p>Designing and programming interactive games, leveraging Python libraries like Pygame to bring engaging and immersive gaming experiences to life.</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-diagram-3 text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">DevOps</h3>
-        <p>Managing the deployment, operations, and monitoring of applications by implementing continuous integration and continuous deployment (CI/CD) pipelines and infrastructure as code (IaC).</p>
-      </div>
-    </div>
-    <div class="col d-flex align-items-start">
-      <i class="bi bi-database text-body-secondary flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
-      <div>
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">Data Engineering</h3>
-        <p>Building and maintaining data processing systems and pipelines to ensure the efficient and reliable flow of data across various platforms and applications.</p>
-      </div>
-    </div>
-  </div>
 </div>
 
 

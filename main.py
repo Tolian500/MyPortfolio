@@ -52,5 +52,23 @@ def morse_project():
     return render_template("morse.html")
 
 
+@app.route('/projects/tictactoe', methods=["GET", "POST"])
+def tictactoe_game():
+    if request.method == 'POST':
+        user_input = request.form['morse_input']
+        morse_code = generate_morse(user_input)
+        return render_template("morse.html",user_input=user_input, morse_output=morse_code)
+    return render_template("tictactoe.html")
+
+@app.route('/projects/tictactoe2', methods=["GET", "POST"])
+def tictactoe_game2():
+    if request.method == 'POST':
+        user_input = request.form['morse_input']
+        morse_code = generate_morse(user_input)
+        return render_template("morse.html",user_input=user_input, morse_output=morse_code)
+    return render_template("tictactoe2.html")
+
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
