@@ -11,11 +11,15 @@ from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from morse import generate_morse
+from tictactoe import restart_game, change_image, player_move, computer_move
 
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
 
-
+tictactoe_images = restart_game()
+moves = 9
+all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+print(all_cards)
 '''
 Make sure the required packages are installed: 
 Open the Terminal in PyCharm (bottom left). 
@@ -48,26 +52,51 @@ def morse_project():
     if request.method == 'POST':
         user_input = request.form['morse_input']
         morse_code = generate_morse(user_input)
-        return render_template("morse.html",user_input=user_input, morse_output=morse_code)
+        return render_template("morse.html", user_input=user_input, morse_output=morse_code)
     return render_template("morse.html")
 
 
 @app.route('/projects/tictactoe', methods=["GET", "POST"])
 def tictactoe_game():
-    if request.method == 'POST':
-        user_input = request.form['morse_input']
-        morse_code = generate_morse(user_input)
-        return render_template("morse.html",user_input=user_input, morse_output=morse_code)
-    return render_template("tictactoe.html")
+    global tictactoe_images, win_text, moves, all_cards
+    image_id = request.args.get("id")
 
-@app.route('/projects/tictactoe2', methods=["GET", "POST"])
-def tictactoe_game2():
-    if request.method == 'POST':
-        user_input = request.form['morse_input']
-        morse_code = generate_morse(user_input)
-        return render_template("morse.html",user_input=user_input, morse_output=morse_code)
-    return render_template("tictactoe2.html")
+    print(image_id)
+    if image_id == "100":
+        tictactoe_images = restart_game()
+        print("Restart")
+        print(tictactoe_images)
+        return redirect(url_for("tictactoe_game"))
+    if image_id is not None:
+        image_id = int(image_id)
+        if int(image_id) not in all_cards:
+            return render_template("tictactoe.html", images=tictactoe_images)
+        all_cards.remove(image_id)
+        # Player Move
+        game_is_over = player_move(image_id)
+        tictactoe_images = change_image(image_id, 1, tictactoe_images)
+        moves -= 1
+        if game_is_over == True:
+            win_text = "✨✨ You Win! ✨✨"
+            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text)
 
+        if moves > 1:
+            # Computer move
+            image_id, game_is_over = computer_move()
+            moves -= 1
+            if image_id is not None:
+                tictactoe_images = change_image(image_id, 2, tictactoe_images)
+                win_text = "Python script wins 🤖!"
+            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text)
+        else:
+            game_is_over = True
+            win_text = "☀️ DRAW! 🌚"
+            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text)
+
+    moves = 9
+    all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    tictactoe_images = restart_game()
+    return render_template("tictactoe.html", images=tictactoe_images)
 
 
 if __name__ == "__main__":
