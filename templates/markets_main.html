@@ -1,0 +1,16 @@
+{% include "header.html" %}
+
+
+{% block content %}
+<div class="jumbotron text-center">
+    <div class="container mt-4" style="height: 400px;">
+  <h1 class="display-4">🏪 Markets & Rankings ⚒️</h1>
+  <p class="lead">Want to choose the best building mat market for your home redesign?</p>
+  <hr class="my-4">
+  <p>You've found the right place! Checkout my collection of markets with data on materials availability, cute personnel and price rates.</p>
+  <a class="btn btn-warning btn-lg" href="{{url_for('markets')}}" role="button">Show Me!</a>
+</div>
+    </div>
+
+{% endblock %}
+{% include "footer.html" %}

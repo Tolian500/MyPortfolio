@@ -10,8 +10,13 @@ from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, SelectField
+from wtforms.validators import DataRequired, URL
 from morse import generate_morse
 from tictactoe import restart_game, change_image, player_move, computer_move
+import csv
+from builder_market_review import MarketForm
 
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
@@ -19,7 +24,7 @@ from tictactoe import restart_game, change_image, player_move, computer_move
 tictactoe_images = restart_game()
 moves = 9
 all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-print(all_cards)
+
 '''
 Make sure the required packages are installed: 
 Open the Terminal in PyCharm (bottom left). 
@@ -34,9 +39,9 @@ This will install the packages from the requirements.txt for this project.
 '''
 
 app = Flask(__name__)
-
-# app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
+key = os.environ.get('FLASK')
+print(f"Flask key = {key}")
+app.config['SECRET_KEY'] = key
 
 ckeditor = CKEditor(app)
 Bootstrap5(app)
@@ -97,6 +102,68 @@ def tictactoe_game():
     all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     tictactoe_images = restart_game()
     return render_template("tictactoe.html", images=tictactoe_images)
+
+
+
+
+
+
+
+
+
+
+
+
+#
+def add_market_data(new_data:list):
+    with open('market-data.csv', newline='', encoding='utf-8') as csv_file:
+        prev_data = csv.reader(csv_file, delimiter=',')
+        list_of_rows = []
+        for row in prev_data:
+            list_of_rows.append(row)
+    print(list_of_rows)
+    list_of_rows.append(new_data)
+    with open('market-data.csv', newline='', encoding='utf-8',mode="w") as csv_file:
+        wr = csv.writer(csv_file)
+        wr.writerows(list_of_rows)
+
+
+@app.route("/markets/home")
+def markets_home():
+    return render_template("markets_main.html")
+
+@app.route('/markets')
+def markets():
+    with open('market-data.csv', newline='', encoding='utf-8') as csv_file:
+        csv_data = csv.reader(csv_file, delimiter=',')
+        list_of_rows = []
+        for row in csv_data:
+            list_of_rows.append(row)
+    return render_template('markets.html', markets=list_of_rows)
+
+@app.route('/markets/add', methods=['GET', 'POST'])
+def addMarket():
+    form = MarketForm()
+    if form.validate_on_submit():
+        print("True")
+    # Exercise:
+    # Make the form write a new row into cafe-data.csv
+    # with   if form.validate_on_submit()
+    if form.validate_on_submit():
+        new_datalist = [
+            form.market.data,
+            form.link.data,
+            form.open_t.data,
+            form.close_t.data,
+            form.assortment.data,
+            form.prices.data,
+            form.personnel.data
+        ]
+        print(form.market.data)
+        add_market_data(new_datalist)
+        return markets()
+
+    return render_template('add_market.html', form=form)
 
 
 if __name__ == "__main__":

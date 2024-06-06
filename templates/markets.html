@@ -1,0 +1,40 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h1>All Markets</h1>
+
+            <table class="table table-light">
+                {% for market in markets: %}
+                <tr>
+                    <th scope="col">{{ market[0] }}</th>
+                    <th scope="col">
+                        <a href="{{ market[1] }}">Maps Link</a>
+                    </th>
+                    <th scope="col">{{ market[2] }}</th>
+                    <th scope="col">{{ market[3] }}</th>
+                    <th scope="col">{{ market[4] }}</th>
+                    <th scope="col">{{ market[5] }}</th>
+                    <th scope="col">{{ market[6] }}</th>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <a class="btn btn-success btn-block mb-4" href="{{ url_for('addMarket') }}" role="button">
+                Add new market</a>
+            <a class="btn btn-secondary btn-block mb-4" href="{{ url_for('markets_home') }} " role="button">
+                Go back to main page</a>
+            <a class="btn btn-dark btn-block mb-4" href="{{ url_for('main_page') }} " role="button">
+                Go back to Portfolio</a>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% include "footer.html" %}
