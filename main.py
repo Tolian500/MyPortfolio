@@ -16,7 +16,7 @@ from wtforms.validators import DataRequired, URL
 from morse import generate_morse
 from tictactoe import restart_game, change_image, player_move, computer_move
 import csv
-from builder_market_review import MarketForm
+from forms import MarketForm, PlaylistForm
 
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
@@ -25,18 +25,6 @@ tictactoe_images = restart_game()
 moves = 9
 all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-'''
-Make sure the required packages are installed: 
-Open the Terminal in PyCharm (bottom left). 
-
-On Windows type:
-python -m pip install -r requirements.txt
-
-On MacOS type:
-pip3 install -r requirements.txt
-
-This will install the packages from the requirements.txt for this project.
-'''
 
 app = Flask(__name__)
 key = os.environ.get('FLASK')
@@ -104,17 +92,7 @@ def tictactoe_game():
     return render_template("tictactoe.html", images=tictactoe_images)
 
 
-
-
-
-
-
-
-
-
-
-
-#
+    # MARKETS SECTION
 def add_market_data(new_data:list):
     with open('market-data.csv', newline='', encoding='utf-8') as csv_file:
         prev_data = csv.reader(csv_file, delimiter=',')
@@ -164,6 +142,14 @@ def addMarket():
         return markets()
 
     return render_template('add_market.html', form=form)
+
+
+# SpotifyPlaylist Form
+@app.route('/projects/playlist')
+def playlist():
+    form = PlaylistForm()
+    return render_template('playlist.html', form=form)
+
 
 
 if __name__ == "__main__":

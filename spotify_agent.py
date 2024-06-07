@@ -4,6 +4,8 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
+
+
 # date = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD: ")
 print(f"client = {os.environ.get('SpotifyCID')}")
 print(f"secret = {os.environ.get('SpotifyCS')}")
@@ -18,6 +20,9 @@ def get_songs(date: str):
     song_authors = [song.getText().strip() for song in song_authors_spans]
     songs_dict = {author: name for author, name in zip(song_authors, song_names)}
     return songs_dict
+
+
+
 
 
 def loggin_sp():
