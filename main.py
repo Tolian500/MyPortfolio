@@ -164,6 +164,20 @@ def playlist():
     return render_template('playlist.html', form=form)
 
 
+@app.route('/projects/playalt', methods=['GET', 'POST'])
+def playalt():
+    form = PlaylistForm()
+    if request.method == 'POST':
+        print(request.form)
+        name = request.form['username']
+        if len(name) <= 0:
+            name = "Time Traveler"
+        input_date = request.form["date"]
+        print(name, input_date)
+        # return jsonify({'name': name, 'date': input_date})
+        # Change later to the code below
+        return redirect(find_and_generate_playlist(name, input_date))
+    return render_template('playalt.html', target="blank")
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():

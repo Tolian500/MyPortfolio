@@ -66,7 +66,7 @@ def get_songs_list(songs: dict, date: str):
 def create_playlist(date: str, songs_list, name:str):
     sp = loggin_sp()
     user_id = sp.current_user()["id"]
-    playlist = sp.user_playlist_create(user=user_id, name=f"{name}'s Playlist of: {date} Top Hot Hits", public=True)
+    playlist = sp.user_playlist_create(user=user_id, name=f"{name}'s Playlist of: {date}", public=True)
     sp.playlist_add_items(playlist_id=playlist["id"], items=songs_list)
     playlist_url = playlist["external_urls"]["spotify"]
     print(f"Playlist URL: {playlist_url}")
