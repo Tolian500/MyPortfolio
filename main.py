@@ -1,6 +1,6 @@
 from datetime import date
 import os
-from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask import Flask, abort, render_template, redirect, url_for, flash, request, jsonify
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
@@ -152,13 +152,15 @@ def addMarket():
 def playlist():
     form = PlaylistForm()
     if request.method == 'POST':
+        print(request.form)
         name = request.form['username']
         if len(name) <= 0:
             name = "Time Traveler"
-        input_date = request.form['date']
+        input_date = request.form["date"]
         print(name, input_date)
-        find_and_generate_playlist(name, input_date)
-        return find_and_generate_playlist(name, input_date)
+        return jsonify({'name': name, 'date': input_date})
+        # Change later to the code below
+        # return find_and_generate_playlist(name, input_date)
     return render_template('playlist.html', form=form)
 
 
