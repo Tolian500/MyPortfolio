@@ -63,10 +63,10 @@ def get_songs_list(songs: dict, date: str):
     return song_uris
 
 
-def create_playlist(date: str, songs_list):
+def create_playlist(date: str, songs_list, name:str):
     sp = loggin_sp()
     user_id = sp.current_user()["id"]
-    playlist = sp.user_playlist_create(user=user_id, name=f"{date} Billboard 100", public=True)
+    playlist = sp.user_playlist_create(user=user_id, name=f"{name}'s Playlist of: {date} Top Hot Hits", public=True)
     sp.playlist_add_items(playlist_id=playlist["id"], items=songs_list)
     playlist_url = playlist["external_urls"]["spotify"]
     print(f"Playlist URL: {playlist_url}")
@@ -74,4 +74,5 @@ def create_playlist(date: str, songs_list):
 
 
 test_date = '2010-01-01'
-create_playlist(test_date, get_songs_list(get_songs('2002-01-01'), '2002-01-01'))
+def find_and_generate_playlist(name:str, date:str):
+    return create_playlist(date, get_songs_list(get_songs(date), date), name)

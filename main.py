@@ -17,6 +17,7 @@ from morse import generate_morse
 from tictactoe import restart_game, change_image, player_move, computer_move
 import csv
 from forms import MarketForm, PlaylistForm
+from spotify_agent import find_and_generate_playlist
 
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
@@ -24,7 +25,6 @@ from forms import MarketForm, PlaylistForm
 tictactoe_images = restart_game()
 moves = 9
 all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
 
 app = Flask(__name__)
 key = os.environ.get('FLASK')
@@ -91,9 +91,10 @@ def tictactoe_game():
     tictactoe_images = restart_game()
     return render_template("tictactoe.html", images=tictactoe_images)
 
-
     # MARKETS SECTION
-def add_market_data(new_data:list):
+
+
+def add_market_data(new_data: list):
     with open('market-data.csv', newline='', encoding='utf-8') as csv_file:
         prev_data = csv.reader(csv_file, delimiter=',')
         list_of_rows = []
@@ -101,7 +102,7 @@ def add_market_data(new_data:list):
             list_of_rows.append(row)
     print(list_of_rows)
     list_of_rows.append(new_data)
-    with open('market-data.csv', newline='', encoding='utf-8',mode="w") as csv_file:
+    with open('market-data.csv', newline='', encoding='utf-8', mode="w") as csv_file:
         wr = csv.writer(csv_file)
         wr.writerows(list_of_rows)
 
@@ -109,6 +110,7 @@ def add_market_data(new_data:list):
 @app.route("/markets/home")
 def markets_home():
     return render_template("markets_main.html")
+
 
 @app.route('/markets')
 def markets():
@@ -118,6 +120,7 @@ def markets():
         for row in csv_data:
             list_of_rows.append(row)
     return render_template('markets.html', markets=list_of_rows)
+
 
 @app.route('/markets/add', methods=['GET', 'POST'])
 def addMarket():
@@ -145,12 +148,26 @@ def addMarket():
 
 
 # SpotifyPlaylist Form
-@app.route('/projects/playlist')
+@app.route('/projects/playlist', methods=['GET', 'POST'])
 def playlist():
     form = PlaylistForm()
+    if request.method == 'POST':
+        name = request.form['username']
+        if len(name) <= 0:
+            name = "Time Traveler"
+        input_date = request.form['date']
+        print(name, input_date)
+        find_and_generate_playlist(name, input_date)
+        return find_and_generate_playlist(name, input_date)
     return render_template('playlist.html', form=form)
 
 
 
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    return render_template('test.html')
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(host='0.0.0.0', port=5001, debug=True)

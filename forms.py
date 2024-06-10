@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired, URL
-from wtforms.widgets import html_params
+from wtforms.widgets import html_params, Input
 from markupsafe import Markup
 
 
@@ -18,6 +18,16 @@ class TimePickerWidget(object):
         </div>
         '''
         return Markup(html)
+
+class DatePickerWidget(Input):
+    input_type = 'text'
+
+    def __call__(self, field, **kwargs):
+        kwargs.setdefault('id', field.id)
+        kwargs.setdefault('data-provide', 'datepicker')
+        kwargs.setdefault('data-date-format', 'yyyy-mm-dd')
+        return Markup(f'<input type="{self.input_type}" name="{field.name}" id="{field.id}" value="{field._value()}" {self.html_params(**kwargs)}>')
+
 
 
 class MarketForm(FlaskForm):
@@ -48,6 +58,6 @@ class MarketForm(FlaskForm):
 
 
 class PlaylistForm(FlaskForm):
-    username = StringField('Your name / nickname', validators=[DataRequired()])
-    date = StringField('Date ("12:00" - time format")', widget=TimePickerWidget(), validators=[DataRequired()])
+    username = StringField('Your name / nickname')
+    date = StringField('Date', widget=DatePickerWidget(), validators=[DataRequired()])
     submit = SubmitField('Add market', render_kw={'onclick': 'return confirmSubmission();'})
