@@ -1,16 +1,16 @@
 {% include "header.html" %}
+<div class="b-example-divider"></div>
 
-
-<div class="container d-flex align-items-center justify-content-center">
+<div class="d-flex align-items-center justify-content-center pb-4 bg-body-secondary">
     <div class="col-md-4 ">
-        <h1 class="text-center pb-4"> Tic Tac Toe </h1>
-        <h3 class="text-center"> Choose your difficulty </h3>
+        <h1 class="display-4 text-center fw-bold text-body-emphasis pt-4"> Tic Tac Toe </h1>
+        <h5 class="text-center"> Choose your difficulty </h5>
 
-               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-info mx-1" data-mdb-ripple-init>Easy</button>
-                <button type="button" class="btn btn-warning mx-1" data-mdb-ripple-init disabled>Medium</button>
-                <button type="button" class="btn btn-danger mx-1" data-mdb-ripple-init disabled>Hard</button>
-            </div>
+        <div class="d-flex justify-content-center mb-2">
+            <button type="button" class="btn btn-info mx-1" data-mdb-ripple-init>Easy</button>
+            <button type="button" class="btn btn-warning mx-1" data-mdb-ripple-init disabled>Medium</button>
+            <button type="button" class="btn btn-danger mx-1" data-mdb-ripple-init disabled>Hard</button>
+        </div>
 
         <div class="row pt-2">
             <div class="col-4 p-0">
@@ -94,7 +94,14 @@
             Restart game
         </a>
         {% endif %}
+        <a href="https://github.com/Tolian500/MyPortfolio/blob/master/spotify_agent.py"
+           class="btn btn-lg btn-link mt-1 w-100"
+           data-mdb-ripple-init>Source code</a>
     </div>
 
 </div>
+
+<div class="b-example-divider "></div>
+
+
 {% include "footer.html" %}
