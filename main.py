@@ -35,11 +35,32 @@ app.config['SECRET_KEY'] = key
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
-def gen_qr_by_link(link:str):
+
+def gen_qr_by_link(link: str):
     img = qrcode.make(link, border=0)
     img.save("static/temp/temp_qr.png")
     img_url = url_for('static', filename="/temp/temp_qr.png")
     return img_url
+
+
+def cards_state():
+    cards = {0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: ''}
+    return cards
+
+
+def disable_all_cards(cards):
+    for card in cards:
+        cards[card] = "pointer-events: none;"
+    return cards
+
+
+card_dict = cards_state()
+
+
+def disable_card(card_dict, ind: int):
+    card_dict[ind] = "pointer-events: none;"
+    return card_dict
+
 
 @app.route('/')
 def main_page():
@@ -57,7 +78,8 @@ def morse_project():
 
 @app.route('/projects/tictactoe', methods=["GET", "POST"])
 def tictactoe_game():
-    global tictactoe_images, win_text, moves, all_cards
+    global tictactoe_images, win_text, moves, all_cards, card_dict
+    print(f'Card Dict: {card_dict}')
     image_id = request.args.get("id")
 
     print(image_id)
@@ -71,13 +93,16 @@ def tictactoe_game():
         if int(image_id) not in all_cards:
             return render_template("tictactoe.html", images=tictactoe_images)
         all_cards.remove(image_id)
+        disable_card(card_dict, image_id)
         # Player Move
         game_is_over = player_move(image_id)
         tictactoe_images = change_image(image_id, 1, tictactoe_images)
         moves -= 1
-        if game_is_over == True:
+        if game_is_over:
             win_text = "✨✨ You Win! ✨✨"
-            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text)
+            disable_all_cards(card_dict)
+            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text,
+                                   card_dict=card_dict)
 
         if moves > 1:
             # Computer move
@@ -86,16 +111,24 @@ def tictactoe_game():
             if image_id is not None:
                 tictactoe_images = change_image(image_id, 2, tictactoe_images)
                 win_text = "Python script wins 🤖!"
-            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text)
+                all_cards.remove(image_id)
+                disable_card(card_dict, image_id)
+                if game_is_over:
+                    disable_all_cards(card_dict)
+            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text,
+                                   card_dict=card_dict)
         else:
             game_is_over = True
+            disable_all_cards(card_dict)
             win_text = "☀️ DRAW! 🌚"
-            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text)
+            return render_template("tictactoe.html", images=tictactoe_images, is_over=game_is_over, win_text=win_text,
+                                   card_dict=card_dict)
 
     moves = 9
     all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     tictactoe_images = restart_game()
-    return render_template("tictactoe.html", images=tictactoe_images)
+    card_dict = cards_state()
+    return render_template("tictactoe.html", images=tictactoe_images, card_dict=card_dict)
 
     # MARKETS SECTION
 
@@ -172,8 +205,6 @@ def playlist():
         # Change later to the code below
         # return redirect(find_and_generate_playlist(name, input_date))
     return render_template('playlist.html')
-
-
 
 
 @app.route('/test', methods=['GET', 'POST'])

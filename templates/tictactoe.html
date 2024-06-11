@@ -14,21 +14,21 @@
 
         <div class="row pt-2">
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=0) }}">
+                <a  style='{{card_dict[0]}}' href="{{ url_for('tictactoe_game', id=0) }}">
                     <img src="{{url_for('static', filename=images[0])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
                 </a>
             </div>
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=1) }}">
+                <a  style='{{card_dict[1]}}' href="{{ url_for('tictactoe_game', id=1) }}">
                     <img src="{{url_for('static', filename=images[1])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
                 </a>
             </div>
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=2) }}">
+                <a  style='{{card_dict[2]}}' href="{{ url_for('tictactoe_game', id=2) }}">
                     <img src="{{url_for('static', filename=images[2])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
@@ -39,21 +39,21 @@
 
         <div class="row">
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=3) }}">
+                <a  style='{{card_dict[3]}}' href="{{ url_for('tictactoe_game', id=3) }}">
                     <img src="{{url_for('static', filename=images[3])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
                 </a>
             </div>
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=4) }}">
+                <a  style='{{card_dict[4]}}' href="{{ url_for('tictactoe_game', id=4) }}">
                     <img src="{{url_for('static', filename=images[4])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
                 </a>
             </div>
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=5) }}">
+                <a  style='{{card_dict[5]}}' href="{{ url_for('tictactoe_game', id=5) }}">
                     <img src="{{url_for('static', filename=images[5])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
@@ -64,21 +64,21 @@
 
         <div class="row">
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=6) }}">
+                <a  style='{{card_dict[6]}}' href="{{ url_for('tictactoe_game', id=6) }}">
                     <img src="{{url_for('static', filename=images[6])}}"
-                         class="img-fluid darken-on-hover"
+                         class="img-fluid darken-on-hover "
                          alt="grid element"/>
                 </a>
             </div>
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=7) }}">
+                <a  style='{{card_dict[7]}}' href="{{ url_for('tictactoe_game', id=7) }}">
                     <img src="{{url_for('static', filename=images[7])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
                 </a>
             </div>
             <div class="col-4 p-0">
-                <a href="{{ url_for('tictactoe_game', id=8) }}">
+                <a style='{{card_dict[8]}}' href="{{ url_for('tictactoe_game', id=8) }}">
                     <img src="{{url_for('static', filename=images[8])}}"
                          class="img-fluid darken-on-hover"
                          alt="grid element"/>
@@ -89,7 +89,7 @@
         <h2 class="text-center"> Game over!</h2>
         <h3 class="text-center"> {{win_text}}</h3>
         <!-- Restart button -->
-        <a class="btn btn-primary btn-block mb-4" href="{{ url_for('tictactoe_game', id=100) }}" role="button"
+        <a class="btn btn-primary btn-block mt-3" href="{{ url_for('tictactoe_game', id=100) }}" role="button"
            style="width: 100%;">
             Restart game
         </a>
