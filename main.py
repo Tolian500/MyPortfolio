@@ -3,6 +3,7 @@ import os
 from flask import Flask, abort, render_template, redirect, url_for, flash, request, jsonify
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
+import qrcode
 from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
@@ -34,6 +35,11 @@ app.config['SECRET_KEY'] = key
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
+def gen_qr_by_link(link:str):
+    img = qrcode.make(link, border=0)
+    img.save("static/temp/temp_qr.png")
+    img_url = url_for('static', filename="/temp/temp_qr.png")
+    return img_url
 
 @app.route('/')
 def main_page():
@@ -147,7 +153,6 @@ def addMarket():
     return render_template('add_market.html', form=form)
 
 
-# SpotifyPlaylist Form
 @app.route('/projects/playlist', methods=['GET', 'POST'])
 def playlist():
     form = PlaylistForm()
@@ -158,31 +163,22 @@ def playlist():
             name = "Time Traveler"
         input_date = request.form["date"]
         print(name, input_date)
-        return jsonify({'name': name, 'date': input_date})
-        # Change later to the code below
-        # return find_and_generate_playlist(name, input_date)
-    return render_template('playlist.html', form=form)
 
+        link = find_and_generate_playlist(name, input_date)
+        img_url = gen_qr_by_link(link)
 
-@app.route('/projects/playalt', methods=['GET', 'POST'])
-def playalt():
-    form = PlaylistForm()
-    if request.method == 'POST':
-        print(request.form)
-        name = request.form['username']
-        if len(name) <= 0:
-            name = "Time Traveler"
-        input_date = request.form["date"]
-        print(name, input_date)
+        return render_template('playlist_done.html', img_url=img_url, link=link)
         # return jsonify({'name': name, 'date': input_date})
         # Change later to the code below
-        return redirect(find_and_generate_playlist(name, input_date))
-    return render_template('playalt.html', target="blank")
+        # return redirect(find_and_generate_playlist(name, input_date))
+    return render_template('playlist.html')
+
+
+
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     return render_template('test.html')
-
 
 
 if __name__ == "__main__":

@@ -15,3 +15,4 @@ requests~=2.32.3
 beautifulsoup4~=4.13.0b2
 MarkupSafe~=2.1.5
 spotipy~=2.24.0
+django-qrcode~=0.3
