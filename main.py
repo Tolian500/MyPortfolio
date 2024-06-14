@@ -29,7 +29,6 @@ all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 app = Flask(__name__)
 key = os.environ.get('FLASK')
-print(f"Flask key = {key}")
 app.config['SECRET_KEY'] = key
 
 ckeditor = CKEditor(app)

@@ -7,9 +7,6 @@ from spotipy.oauth2 import SpotifyOAuth
 
 
 # date = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD: ")
-print(f"client = {os.environ.get('SpotifyCID')}")
-print(f"secret = {os.environ.get('SpotifyCS')}")
-
 
 def get_songs(date: str):
     response = requests.get("https://www.billboard.com/charts/hot-100/" + date)
