@@ -31,13 +31,9 @@ def gen_qr_by_link(link: str):
     # img.save("static/temp/temp_qr.png")
     # img_url = url_for('static', filename="/temp/temp_qr.png")
     # return img_url
-    # Save the image to a bytes buffer
-    buf = io.BytesIO()
-    img.save(buf, format='PNG')
-    buf.seek(0)
 
-    # Encode the image to base64
-    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    # Encode the image directly to base64
+    img_base64 = base64.b64encode(img.tobytes()).decode('utf-8')
 
     return img_base64
 
