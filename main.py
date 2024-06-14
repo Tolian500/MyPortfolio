@@ -1,5 +1,5 @@
 import os
-import io
+from io import BytesIO
 import base64
 from flask import Flask,  render_template, redirect, url_for,  request
 from flask_bootstrap import Bootstrap5
@@ -33,7 +33,10 @@ def gen_qr_by_link(link: str):
     # return img_url
 
     # Encode the image directly to base64
-    img_base64 = base64.b64encode(img.tobytes()).decode('utf-8')
+    # Use BytesIO to save image data in memory and then encode to base64
+    buf = BytesIO()
+    img.save(buf)
+    img_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
 
     return img_base64
 
