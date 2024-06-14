@@ -1,27 +1,18 @@
-from datetime import date
 import os
-from flask import Flask, abort, render_template, redirect, url_for, flash, request, jsonify
+import io
+import base64
+from flask import Flask,  render_template, redirect, url_for,  request
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 import qrcode
-from flask_gravatar import Gravatar
-from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Text
-from functools import wraps
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
-from wtforms.validators import DataRequired, URL
+
 from morse import generate_morse
 from tictactoe import restart_game, change_image, player_move, computer_move
 import csv
 from forms import MarketForm, PlaylistForm
 from spotify_agent import find_and_generate_playlist
 
-# Optional: add contact me email functionality (Day 60)
-# import smtplib
+
 
 tictactoe_images = restart_game()
 moves = 9
@@ -37,9 +28,18 @@ Bootstrap5(app)
 
 def gen_qr_by_link(link: str):
     img = qrcode.make(link, border=0)
-    img.save("static/temp/temp_qr.png")
-    img_url = url_for('static', filename="/temp/temp_qr.png")
-    return img_url
+    # img.save("static/temp/temp_qr.png")
+    # img_url = url_for('static', filename="/temp/temp_qr.png")
+    # return img_url
+    # Save the image to a bytes buffer
+    buf = io.BytesIO()
+    img.save(buf, format='PNG')
+    buf.seek(0)
+
+    # Encode the image to base64
+    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+
+    return img_base64
 
 
 def cards_state():
@@ -196,13 +196,14 @@ def playlist():
         input_date = request.form["date"]
         print(name, input_date)
 
+        # img_url = gen_qr_by_link(link)
         link = find_and_generate_playlist(name, input_date)
-        img_url = gen_qr_by_link(link)
+        img_base64 = gen_qr_by_link(link)
+
+        # Create the data URL for the base64 string
+        img_url = f"data:image/png;base64,{img_base64}"
 
         return render_template('playlist_done.html', img_url=img_url, link=link)
-        # return jsonify({'name': name, 'date': input_date})
-        # Change later to the code below
-        # return redirect(find_and_generate_playlist(name, input_date))
     return render_template('playlist.html')
 
 

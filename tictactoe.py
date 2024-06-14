@@ -23,7 +23,6 @@ def reset_pos():
         for z in x:
             temp_list = [y, z]
             pos_list.append(temp_list)
-    print(pos_list)
 
 
 reset_pos()
@@ -60,7 +59,6 @@ def computer_move():
         global current_move
         current_move = "Computer"
         pos = random.choice(pos_list)
-        print("Computer  put item to:")
         print(pos)
         remove_pos(pos)
         game_is_over = make_move(pos, "b")
@@ -68,7 +66,6 @@ def computer_move():
 
 
 def show_desc():
-    print("Current deck:")
     for el in desc:
         print(el)
 
@@ -79,8 +76,6 @@ def random_coord():
 
 def remove_pos(pos: list):
     pos_list.remove(pos)
-    print(f"Positions left: {len(pos_list)}")
-    print(pos_list)
 
 
 def make_move(coords: list, atrib: str):
