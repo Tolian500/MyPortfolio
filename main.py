@@ -1,7 +1,7 @@
 import os
 from io import BytesIO
 import base64
-from flask import Flask,  render_template, redirect, url_for,  request
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 import qrcode
@@ -11,8 +11,6 @@ from tictactoe import restart_game, change_image, player_move, computer_move
 import csv
 from forms import MarketForm, PlaylistForm
 from spotify_agent import find_and_generate_playlist
-
-
 
 tictactoe_images = restart_game()
 moves = 9
@@ -209,6 +207,11 @@ def playlist():
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     return render_template('test.html')
+
+
+@app.route('/photography', methods=['GET', 'POST'])
+def ph_main():
+    return render_template('ph_index.html')
 
 
 if __name__ == "__main__":
