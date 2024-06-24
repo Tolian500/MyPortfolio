@@ -1,10 +1,10 @@
 {% include "header.html" %}
 <style>
-.overlay {
-    background-color: rgba(0, 0, 0, 0.2); /* Adjust the color and transparency as needed */
-    padding: 10px;
-    border-radius: 4px;
-}
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.2); /* Adjust the color and transparency as needed */
+        padding: 10px;
+        border-radius: 4px;
+    }
 </style>
 
 <div class="container px-4 py-5" id="custom-cards">
@@ -76,7 +76,7 @@ background-size: cover;
 background-size: cover;
                         background-position: center;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 overlay">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">TIC TOC GAME</h3>
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Tic Tac Toe</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
                                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
@@ -98,8 +98,8 @@ background-size: cover;
     </div>
 
 
-<!--        SECOND ROW-->
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
+    <!--        SECOND ROW-->
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
         <div class="col">
             <a href="{{url_for('markets_home')}}" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg darken-on-hover"
@@ -155,15 +155,15 @@ background-size: cover;
             </a>
         </div>
 
-              <!--        BLANK PROJECT-->
+        <!--        RSI DISCORD PROJECT-->
         <div class="col">
-            <a style="pointer-events: none;" href="your-link-here.html" class="text-decoration-none disabled">
+            <a href="{{url_for('rsi_main')}}" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                     style="background-image: url('https://images.unsplash.com/photo-1598620617148-c9e8ddee6711');
+                     style="background-image: url('https://images.unsplash.com/photo-1607459726451-44808af96022');
 background-size: cover;
                         background-position: center;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">(in progress)</h3>
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Discord RSI Bot</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
                                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
@@ -184,6 +184,33 @@ background-size: cover;
         </div>
 
 
+        <!--              &lt;!&ndash;        BLANK PROJECT&ndash;&gt;-->
+        <!--        <div class="col">-->
+        <!--            <a style="pointer-events: none;" href="your-link-here.html" class="text-decoration-none disabled">-->
+        <!--                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"-->
+        <!--                     style="background-image: url('https://images.unsplash.com/photo-1607459726451-44808af96022');-->
+        <!--background-size: cover;-->
+        <!--                        background-position: center;">-->
+        <!--                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">-->
+        <!--                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">(in progress)</h3>-->
+        <!--                        <ul class="d-flex list-unstyled mt-auto">-->
+        <!--                            <li class="me-auto">-->
+        <!--                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"-->
+        <!--                                     class="rounded-circle border border-white">-->
+        <!--                            </li>-->
+        <!--                            <li class="d-flex align-items-center me-3">-->
+        <!--                                <i class="bi bi-geo-fill me-2" style="font-size: 1em;"></i>-->
+        <!--                                <small>None yet</small>-->
+        <!--                            </li>-->
+        <!--                            <li class="d-flex align-items-center">-->
+        <!--                                <i class="bi bi-calendar3 me-2" style="font-size: 1em;"></i>-->
+        <!--                                <small>4d</small>-->
+        <!--                            </li>-->
+        <!--                        </ul>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </a>-->
+        <!--        </div>-->
 
 
     </div>

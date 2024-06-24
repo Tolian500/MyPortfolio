@@ -1,7 +1,7 @@
 import os
 from io import BytesIO
 import base64
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 import qrcode
@@ -22,6 +22,9 @@ app.config['SECRET_KEY'] = key
 
 ckeditor = CKEditor(app)
 Bootstrap5(app)
+
+# DEBUG MODE
+DEBUG_MODE = False  # CHANGE BEFORE PRODUCTION
 
 
 def gen_qr_by_link(link: str):
@@ -214,5 +217,13 @@ def ph_main():
     return render_template('ph_index.html')
 
 
+@app.route('/rsi', methods=['GET', 'POST'])
+def rsi_main():
+    if request.method == 'POST':
+        example_value = "RSI for SOLUSDT: 75.72 at 2024-06-23 21:00:00 Delay: 281 ms) - Current UTC time: 11:00:00 UTC"  # Replace with your actual script processing
+        return jsonify({'value': example_value})
+    return render_template('rsi.html')
+
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, debug=False)
+    app.run(host='0.0.0.0', port=5001, debug=DEBUG_MODE)
