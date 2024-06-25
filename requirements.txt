@@ -17,3 +17,6 @@ MarkupSafe~=2.1.5
 spotipy~=2.24.0
 django-qrcode~=0.3
 qrcode~=7.4.2
+pandas~=2.2.2
+pybit~=5.7.0
+ta~=0.11.0
