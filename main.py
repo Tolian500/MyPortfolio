@@ -5,12 +5,13 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 import qrcode
-
+import time
 from morse import generate_morse
 from tictactoe import restart_game, change_image, player_move, computer_move
 import csv
 from forms import MarketForm, PlaylistForm
 from spotify_agent import find_and_generate_playlist
+from bybit_manager import BybitManager
 
 tictactoe_images = restart_game()
 moves = 9
@@ -19,12 +20,17 @@ all_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 app = Flask(__name__)
 key = os.environ.get('FLASK')
 app.config['SECRET_KEY'] = key
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+API_KEY = os.getenv("API_KEY")
+API_SECRET = os.getenv("API_SECRET")
+
+
 
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 # DEBUG MODE
-DEBUG_MODE = False  # CHANGE BEFORE PRODUCTION
+DEBUG_MODE = True  # CHANGE BEFORE PRODUCTION
 
 
 def gen_qr_by_link(link: str):
@@ -59,6 +65,35 @@ card_dict = cards_state()
 def disable_card(card_dict, ind: int):
     card_dict[ind] = "pointer-events: none;"
     return card_dict
+
+
+
+def get_rsi_data(symbol:str, interval:str, window:int):
+    start_time = int((time.time() - 60 * 60 * 24) * 1000)  # 24 hours ago in milliseconds
+    end_time = int(time.time() * 1000)  # current time in milliseconds
+    manager = BybitManager(API_KEY, API_SECRET, window)
+
+    before_fetch = time.time()
+    kline_data = manager.fetch_kline_data(symbol, interval, start_time, end_time)
+
+    # Record the time after fetching data
+    after_fetch = time.time()
+
+    # Calculate the delay in milliseconds
+    delay_ms = int((after_fetch - before_fetch) * 1000)
+    if kline_data:
+        # Calculate RSI
+        df = manager.calculate_rsi(kline_data)
+
+        # Find first non-NaN RSI value and its timestamp
+        first_valid_rsi = df['RSI'].dropna().iloc[0]
+        first_valid_time = df.index[df['RSI'].notna()].tolist()[0]
+        rsi_message = f"RSI for {symbol}: {first_valid_rsi:.2f} at {first_valid_time.strftime('%Y-%m-%d %H:%M:%S')} (Delay: {delay_ms} ms)"
+        return rsi_message
+
+
+
+
 
 
 @app.route('/')
@@ -220,10 +255,22 @@ def ph_main():
 @app.route('/rsi', methods=['GET', 'POST'])
 def rsi_main():
     if request.method == 'POST':
-        example_value = "RSI for SOLUSDT: 75.72 at 2024-06-23 21:00:00 Delay: 281 ms) - Current UTC time: 11:00:00 UTC"  # Replace with your actual script processing
-        return jsonify({'value': example_value})
-    return render_template('rsi.html')
 
+        symbol_mapping = {"BTC/USDT": 'BTCUSDT', "ETH/USDT": 'ETHUSDT', "SOL/USDT": 'SOLUSDT'}
+        # interval_mapping = {0: '1', 1: '60', 2: '1440'}
+        interval_mapping = {0: '1', 1: '60', 2: 'D'}  # Example for Bybit
+        window_mapping = {0: 10, 1: 12, 2: 14, 3: 16, 4: 18}
+        symbol_raw = request.form.get('currency')
+        interval = interval_mapping[int(request.form.get('timeframe'))]
+        window = window_mapping[int(request.form.get('period'))]
+        symbol = symbol_mapping[symbol_raw]
+
+        message = get_rsi_data(symbol, interval, window)  # Your function to get RSI data
+        print(message)
+        # example_value = f"RSI for {symbol}: 75.72 at 2024-06-23 21:00:00 Delay: 281 ms - Current UTC time: 11:00:00 UTC"
+        return jsonify({'value': message})
+
+    return render_template('rsi.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5001, debug=DEBUG_MODE)

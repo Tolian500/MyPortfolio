@@ -14,14 +14,16 @@
 
     <!--MORSE CODE PROJECT-->
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
+
+        <!--        RSI DISCORD PROJECT-->
         <div class="col">
-            <a href="{{url_for('morse_project')}}" class="text-decoration-none">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg darken-on-hover"
-                     style="background-image: url('https://images.unsplash.com/photo-1568258805731-c117485e50c2');
-                        background-size: cover;
+            <a href="{{url_for('rsi_main')}}" class="text-decoration-none">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+                     style="background-image: url('https://images.unsplash.com/photo-1607459726451-44808af96022');
+background-size: cover;
                         background-position: center;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Morse code generator</h3>
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Discord RSI Bot</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
                                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
@@ -33,13 +35,43 @@
                             </li>
                             <li class="d-flex align-items-center">
                                 <i class="bi bi-calendar3 me-2" style="font-size: 1em;"></i>
-                                <small>3d</small>
+                                <small>4d</small>
                             </li>
                         </ul>
                     </div>
                 </div>
             </a>
         </div>
+
+
+        <!--        Spotify PROJECT-->
+        <div class="col">
+            <a href="{{url_for('playlist')}}" class="text-decoration-none">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+                     style="background-image: url('https://images.unsplash.com/photo-1458560871784-56d23406c091');
+background-size: cover;
+                        background-position: center;">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Spotify Music time machine</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="me-auto">
+                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
+                                     class="rounded-circle border border-white">
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <i class="bi bi-box-arrow-down me-2" style="font-size: 1em;"></i>
+                                <small>Web scraping</small>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-calendar3 me-2" style="font-size: 1em;"></i>
+                                <small>4d</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+
 
         <!--        WEBSITE PROJECT-->
         <div class="col">
@@ -68,38 +100,43 @@ background-size: cover;
                 </div>
             </a>
         </div>
-        <!--TIC TOC GAME-->
+
+
+        <!--END OF THE ROW-->
+    </div>
+
+
+    <!--        SECOND ROW-->
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
+
+        <!--        MORSE CODE GENERATOR-->
         <div class="col">
-            <a href="{{url_for('tictactoe_game')}}" class="text-decoration-none">
+            <a href="{{url_for('morse_project')}}" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg darken-on-hover"
-                     style="background-image: url('static/assets/img/TicTocCover.png');
-background-size: cover;
+                     style="background-image: url('https://images.unsplash.com/photo-1568258805731-c117485e50c2');
+                        background-size: cover;
                         background-position: center;">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 overlay">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Tic Tac Toe</h3>
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Morse code generator</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
                                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
                                      class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
-                                <i class="bi bi-controller me-2" style="font-size: 1em;"></i>
-                                <small>Game Development</small>
+                                <i class="bi bi-gear me-2" style="font-size: 1em;"></i>
+                                <small>Automation</small>
                             </li>
                             <li class="d-flex align-items-center">
                                 <i class="bi bi-calendar3 me-2" style="font-size: 1em;"></i>
-                                <small>5d</small>
+                                <small>3d</small>
                             </li>
                         </ul>
                     </div>
                 </div>
             </a>
         </div>
-    </div>
 
-
-    <!--        SECOND ROW-->
-    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
         <div class="col">
             <a href="{{url_for('markets_home')}}" class="text-decoration-none">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg darken-on-hover"
@@ -127,55 +164,28 @@ background-size: cover;
             </a>
         </div>
 
-        <!--        BLANK PROJECT-->
-        <div class="col">
-            <a href="{{url_for('playlist')}}" class="text-decoration-none">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                     style="background-image: url('https://images.unsplash.com/photo-1458560871784-56d23406c091');
-background-size: cover;
-                        background-position: center;">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Music time machine</h3>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
-                                     class="rounded-circle border border-white">
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                                <i class="bi bi-gear me-2" style="font-size: 1em;"></i>
-                                <small>Automation</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <i class="bi bi-calendar3 me-2" style="font-size: 1em;"></i>
-                                <small>4d</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
 
-        <!--        RSI DISCORD PROJECT-->
+        <!--TIC TOC GAME-->
         <div class="col">
-            <a href="{{url_for('rsi_main')}}" class="text-decoration-none">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                     style="background-image: url('https://images.unsplash.com/photo-1607459726451-44808af96022');
+            <a href="{{url_for('tictactoe_game')}}" class="text-decoration-none">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg darken-on-hover"
+                     style="background-image: url('static/assets/img/TicTocCover.png');
 background-size: cover;
                         background-position: center;">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 overlay">
-                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Discord RSI Bot</h3>
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 overlay">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Tic Tac Toe</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
                                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
                                      class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
-                                <i class="bi bi-geo-fill me-2" style="font-size: 1em;"></i>
-                                <small>None yet</small>
+                                <i class="bi bi-controller me-2" style="font-size: 1em;"></i>
+                                <small>Game Development</small>
                             </li>
                             <li class="d-flex align-items-center">
                                 <i class="bi bi-calendar3 me-2" style="font-size: 1em;"></i>
-                                <small>4d</small>
+                                <small>5d</small>
                             </li>
                         </ul>
                     </div>
