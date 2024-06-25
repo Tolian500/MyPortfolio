@@ -18,5 +18,7 @@ spotipy~=2.24.0
 django-qrcode~=0.3
 qrcode~=7.4.2
 pandas~=2.2.2
-pybit~=5.7.0
-ta~=0.11.0
+pybit==5.7.0  # Bybit API wrapper
+ta==0.11.0  # Technical analysis library
+cryptography==42.0.8
+pycryptodome==3.20.0
