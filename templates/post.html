@@ -1,0 +1,519 @@
+{% include "header.html" %}
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet">
+<style>
+
+
+    .fst-italic {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-style: italic !important;
+    }
+        h1, h2, h3, h4, h5 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-style: normal;
+    }
+
+    .display-4 {
+    font-weight: 300;
+    line-height: 1.2;
+
+}
+
+    .img-container {
+    /* Set a maximum width for the image container */
+    max-width: 100%;
+    /* Center the image horizontally if needed */
+    margin: 0 auto;
+}
+</style>
+
+
+<div class="container">
+
+
+    <div class="p-4 py-md-2 px-md-5 my-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">Software developer analysis by LinkedIn</h1>
+            <p class="lead my-3">This article provides you data visualisation and analysis based on current
+                "software
+                developer" offers of LinkedIn platform .</p>
+        </div>
+    </div>
+
+    <h3 class="py-2 fst-italic border-top">
+        Note: How this analysis were made
+    </h3>
+    <p class="border-bottom pb-2">For this article was used Selenium for web
+        scraping, Pandas for data organizing and manipulating, MatPlotLib and Plotty for data visualisation.</p>
+
+    <article class="blog-post mt-2">
+        <h2>Intro</h2>
+        <p>In today’s fast-paced job market, staying ahead of employment trends is more important than ever. Whether
+            you're hunting for your next gig or trying to attract top talent, having the right insights can make all the
+            difference. This article takes you through an exciting journey of using automation to analyze job offers on
+            LinkedIn. By harnessing the power of Selenium and Python, I’ve created a way to automatically gather key
+            details from job postings like company names, job titles, employment types, and experience levels. My goal?
+            To help myself uncover hidden trends and gain valuable insights into the job market, make my job search
+            smarter and more efficient.</p>
+        <h3 class="border-top pt-2">Research Steps</h3>
+        <ol>
+            <li>
+                <strong>Setup Selenium and ChromeDriver:</strong>
+                <p>Configure Selenium WebDriver with ChromeDriver to automate browser actions and navigate through
+                    LinkedIn job postings.</p>
+            </li>
+            <li>
+                <strong>Automate LinkedIn Login:</strong>
+                <p>Script the login process using Selenium to securely access LinkedIn with your credentials.</p>
+            </li>
+            <li>
+                <strong>Navigate to Job Search Page:</strong>
+                <p>Direct the browser to the LinkedIn job search page, specifying the search parameters such as keywords
+                    and location. In this reseach was used <strong>"Software developer"</strong> as search tag and
+                    <strong>"Mazowian region"</strong> as location tag.</p>
+            </li>
+            <li>
+                <strong>Scroll Through Job Listings:</strong>
+                <p>Implement a scrolling function to load and access more job listings dynamically.</p>
+            </li>
+            <li>
+                <strong>Extract Job Details:</strong>
+                <p>For each job listing, extract key details such as company name, job title, employment type,
+                    experience level, posting date, and number of applicants using Selenium.</p>
+            </li>
+            <li>
+                <strong>Analyze Job Descriptions:</strong>
+                <p>Search job descriptions for specific tags (e.g., Python, Selenium, Git) and record their presence to
+                    understand skill demands.</p>
+            </li>
+            <li>
+                <strong>Store Data in a Structured Format:</strong>
+                <p>Organize the collected data into a dictionary or another structured format for further analysis.</p>
+            </li>
+            <li>
+                <strong>Gain Insights and Identify Trends:</strong>
+                <p>Analyze the collected data to uncover hidden trends and gain valuable insights into the job market,
+                    helping to make your job search smarter and more efficient.</p>
+            </li>
+        </ol>
+
+
+        <h2 class="border-top pt-2">Getting the Data</h2>
+        <p>To uncover the latest job market trends, I turned to automation, leveraging powerful tools and techniques to
+            gather data from LinkedIn job postings. All data was taken at <strong>26.06.2024</strong> and contains
+            <strong>296 samples</strong> of
+            different data offers according to the <strong>"Software Developer"</strong> search tag and <strong>"Mazowian
+                region"</strong> (Poland) as
+            location tag. This is how sample of the data looked like as row data:</p>
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <th scope="row">Company Name</th>
+                <td>NTIATIVE IT Recruitment</td>
+            </tr>
+            <tr>
+                <th scope="row">Job Title</th>
+                <td>Lead QA Engineer (Python/C#)</td>
+            </tr>
+            <tr>
+                <th scope="row">Employment Type</th>
+                <td>Full-time</td>
+            </tr>
+            <tr>
+                <th scope="row">Experience Level</th>
+                <td>Mid-Senior level</td>
+            </tr>
+            <tr>
+                <th scope="row">Posted</th>
+                <td>Reposted 2 weeks ago</td>
+            </tr>
+            <tr>
+                <th scope="row">Applicants</th>
+                <td>45 applicants</td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Java</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>JavaScript</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>C++</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>C#</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Ruby</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>PHP</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Swift</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Kotlin</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Other skill tags below</td>
+                <td>...</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="border-top pt-2">Data Preparation and Cleaning</h3>
+        <p>Once the raw data is collected, it undergoes several preparation and cleaning steps to ensure accuracy and
+            consistency:</p>
+        <ol>
+            <li>
+                <strong>Handling Missing Values:</strong>
+                <p>In cases where the experience level or employment type is not specified, we replace the missing (NaN)
+                    values with "Not Specified". This ensures that our dataset remains complete and avoids potential
+                    issues in subsequent analysis.</p>
+            </li>
+            <li>
+                <strong>Standardizing Posted Time:</strong>
+                <p class="m-0">Job postings often list the time since the job was posted in relative terms such as "1
+                    week ago" or
+                    "2 weeks ago". To standardize this, we convert these relative times into days. For example:</p>
+                <ul>
+                    <li>"1 week ago" becomes 7 days.</li>
+                    <li class="mb-2">"2 weeks ago" becomes 14 days.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Cleaning the Applicants Column:</strong>
+                <p>The applicants column may contain strings such as "10 applicants" or "50 applicants". We clean this
+                    data by extracting the numeric values, ensuring that the column contains only integers representing
+                    the number of applicants.</p>
+            </li>
+            <li>
+                <strong>Grouping Job Titles:</strong>
+                <p>To facilitate analysis, I categorize job titles into specific groups using ChatGPT. The job titles
+                    are grouped into categories such as:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Software Quality Assurance Engineer</li>
+                            <li>Full Stack Developer</li>
+                            <li>Java Developer</li>
+                            <li>DevOps Engineer</li>
+                            <li>Test Engineer</li>
+                            <li>Python Engineer</li>
+                            <li>Back End Developer</li>
+                            <li>Software Engineer</li>
+                            <li>Frontend Developer</li>
+                            <li>Data Engineer</li>
+                            <li>AI/ML Engineer</li>
+                            <li>Cloud Engineer</li>
+                            <li>Mobile Application Developer</li>
+                            <li>Database Developer</li>
+                            <li>Automation Engineer</li>
+                            <li>React Developer</li>
+                            <li>Salesforce Developer</li>
+                            <li>SAP Developer</li>
+                            <li>Embedded Software Engineer</li>
+                            <li>Game Developer</li>
+                            <li>Security Engineer</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Software Architect</li>
+                            <li>Machine Learning Engineer</li>
+                            <li>Site Reliability Engineer</li>
+                            <li>UI/UX Designer</li>
+                            <li>Business Intelligence Developer</li>
+                            <li>Systems Analyst</li>
+                            <li>Integration Engineer</li>
+                            <li>Technical Writer</li>
+                            <li>Big Data Engineer</li>
+                            <li>Senior Software Engineer</li>
+                            <li>Web Developer</li>
+                            <li>iOS Developer</li>
+                            <li>Android Developer</li>
+                            <li>ERP Consultant</li>
+                            <li>Blockchain Developer</li>
+                            <li>RPA Developer</li>
+                            <li>IT Support Specialist</li>
+                            <li>Digital Marketing Specialist</li>
+                            <li>Technical Project Manager</li>
+                            <li>Virtual Reality Developer</li>
+                            <li>Network Engineer</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-2">This grouping helps in analyzing trends and patterns across different types of software development
+                    roles.</p>
+            </li>
+        </ol>
+        <p>Sample after data preparation:</p>
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <th scope="row">Company Name</th>
+                <td>Netcompany</td>
+            </tr>
+            <tr>
+                <th scope="row">Job Title</th>
+                <td>Junior Java Developer</td>
+            </tr>
+            <tr>
+                <th scope="row">Employment Type</th>
+                <td>Not Specyfied</td>
+            </tr>
+            <tr>
+                <th scope="row">Experience Level</th>
+                <td>Not Specyfied</td>
+            </tr>
+            <tr>
+                <th scope="row">Posted Days Ago</th>
+                <td>1</td>
+            </tr>
+            <tr>
+                <th scope="row">Applicants</th>
+                <td>100</td>
+            </tr>
+            <tr>
+                <th scope="row">Job Title Grouped</th>
+                <td>Java Developer
+                </td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Java</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>JavaScript</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>C++</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>C#</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Ruby</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>PHP</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Swift</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Kotlin</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Other skill tags below</td>
+                <td>...</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <h2 class="border-top mt-4 pt-3">Insights and Identify Trends</h2>
+        <p>Analyzing the data collected from LinkedIn job postings can reveal fascinating trends and insights about the
+            job market. Here are the key findings visualized through various plots:</p>
+
+        <div class="container">
+            <div class="row border-bottom">
+                <!-- Distribution of Programming Languages in Job Postings -->
+                <strong>Distribution of Programming Languages in Job Postings:</strong>
+                <p>This plot illustrates the most frequently mentioned programming languages in job postings. It helps
+                    identify which programming languages are in high demand across various job roles, guiding job
+                    seekers on which languages to prioritize for their career growth.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Programing Language distr.png" class="img-fluid rounded"
+                         alt="Distribution of Programming Languages in Job Postings">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Experience Level Distribution in Job Postings -->
+                <strong>Experience Level Distribution in Job Postings:</strong>
+                <p>This chart shows the distribution of job postings based on the required experience levels, such
+                    as entry-level, mid-level, and senior positions. It reveals the general demand for professionals
+                    at different stages of their careers.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Experience level.png" class="img-fluid rounded"
+                         alt="Experience Level Distribution in Job Postings">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Employment Type Distribution in Job Postings -->
+                <strong>Employment Type Distribution in Job Postings:</strong>
+                <p>This plot breaks down job postings into categories like full-time, part-time, and contract
+                    positions. It provides insights into the types of employment opportunities available and trends
+                    in job market preferences.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Employment type.png" class="img-fluid rounded"
+                         alt="Employment Type Distribution in Job Postings">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Top 10 Most Common Job Titles -->
+                <strong>Top 10 Most Common Job Titles:</strong>
+                <p>This visualization displays the ten most frequently listed job titles. It highlights which job
+                    roles are the most prevalent in the job market, helping job seekers identify popular
+                    positions.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Most common jobs.png" class="img-fluid rounded"
+                         alt="Top 10 Most Common Job Titles">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Correlation Matrix of Skills -->
+                <strong>Correlation Matrix of Skills:</strong>
+                <p>This plot shows the relationships between various skills mentioned in job postings. It helps
+                    identify which skills often appear together, offering insights into the skill sets that are
+                    frequently required for different job roles.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Corellation matrix of skills.png" class="img-fluid rounded"
+                         alt="Correlation Matrix of Skills">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Trend of Job Postings Over Time -->
+                <strong>Trend of Job Postings Over Time:</strong>
+                <p>This line chart tracks the number of job postings over time, giving a sense of the overall job
+                    market activity. It can reveal trends such as increased hiring periods or seasonal fluctuations
+                    in job postings.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Trens posting over time.png" class="img-fluid rounded"
+                         alt="Trend of Job Postings Over Time">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Trend of Job Postings Over Time with Experience Level Distribution -->
+                <strong>Trend of Job Postings Over Time with Experience Level Distribution:</strong>
+                <p>This combined plot shows how job postings have varied over time, broken down by different
+                    experience levels. It highlights how demand for various experience levels has changed, offering
+                    insights into market trends for different career stages.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Trends posting over time with experience.png"
+                         class="img-fluid rounded"
+                         alt="Trend of Job Postings Over Time with Experience Level Distribution">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Number of Applicants per Job Title Group -->
+                <strong>Number of Applicants per Job Title Group:</strong>
+                <p>This plot visualizes the number of applicants for different job title groups. It indicates which
+                    job titles attract the most competition, helping job seekers understand where they might face
+                    more challenges. The mean for all job offers is <strong>31.70 applicants.</strong></p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Number of applicants.png" class="img-fluid rounded"
+                         alt="Number of Applicants per Job Title Group">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Job Title Distribution -->
+                <strong>Job Title Distribution:</strong>
+                <p>This chart displays the frequency of various job titles across the job postings. It shows which
+                    roles are most commonly advertised, giving a snapshot of the current job market landscape.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Job gropu distib.png" class="img-fluid rounded"
+                         alt="Job Title Distribution">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Plot Title and Description -->
+                <strong>Trend of Job Postings by Job Title Group and Experience Level:</strong>
+                <p>This stacked bar chart displays the number of job postings for different job title groups across
+                    various experience levels, ordered from the highest to lowest number of job postings. The x-axis
+                    represents different job title groups, and the y-axis shows the number of job postings. Each bar
+                    is divided into segments representing different experience levels, providing insights into which
+                    job titles are most prevalent and how the demand for these roles varies by experience level.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Trend Jobs By Group and Experience.png"
+                         class="img-fluid rounded"
+                         alt="Trend of Job Postings by Job Title Group and Experience Level">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Top 6 Job Groups: Trend of Job Postings with Experience Level Distribution -->
+                <strong>Top 6 Job Groups: Trend of Job Postings with Experience Level Distribution:</strong>
+                <p>This plot focuses on the top three job groups and shows how the number of job postings in these
+                    groups has evolved over time, along with the experience level requirements. It provides a
+                    detailed look at the demand for major job categories.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/Top 3 Job Groups.png" class="img-fluid rounded"
+                         alt="Top 6 Job Groups: Trend of Job Postings with Experience Level Distribution">
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <!-- Experience Level Distribution for Machine Learning Engineer Job Group -->
+                <strong>Experience Level Distribution for Machine Learning Engineer Job Group:</strong>
+                <p>This plot shows the experience level requirements specifically for the Machine Learning Engineer
+                    job group. It provides insights into what level of experience is most commonly sought for roles
+                    in this specialized field.</p>
+                <div class="text-center">
+                    <img src="static/assets/img/plots/ML Experience Level.png" class="img-fluid rounded"
+                         alt="Experience Level Distribution for Machine Learning Engineer Job Group">
+                </div>
+            </div>
+        </div>
+
+    </article>
+    <section id="conclusions">
+        <div class="container">
+            <h2>Conclusions</h2>
+            <ul>
+                <li><strong>Junior-Level Opportunities</strong>: A mere <strong>12.5%</strong> of job postings are aimed
+                    at junior professionals, indicating that most job opportunities are geared towards those with some
+                    level of experience.
+                </li>
+                <li><strong>Popular Job Groups</strong>: <strong>Java Developer</strong>,
+                    <strong>Software Engineer</strong>, and <strong>DevOps Engineers</strong>
+                    are the most frequently posted
+                    positions, reflecting current high demand in these fields.
+                </li>
+                <li><strong>Experience Level Balance</strong>: The <strong>Machine Learning Engineer</strong> job group
+                    stands out for having a balanced distribution of experience levels, unlike most other job categories
+                    where either junior or senior roles dominate.
+                </li>
+            </ul>
+
+            <h3>Implications for Job Seekers</h3>
+            <p>For job seekers, focusing on in-demand roles such as DevOps, Data Engineering, or Machine Learning can
+                enhance job prospects. Furthermore, those aiming for junior positions might need to leverage internships
+                or entry-level opportunities to build their resumes.</p>
+            <h3 class="border-top">Final Thoughts</h3>
+            <p>This analysis provides a clear picture of the current job market in the tech industry, offering valuable
+                insights for both job seekers and recruiters. By staying informed about these trends, you can make more
+                strategic career decisions or refine hiring practices to better meet market demands. As the job market
+                continues to evolve, keeping up with these insights will be key to navigating future opportunities and
+                challenges.</p>
+        </div>
+    </section>
+
+
+</div>
+
+
+<!--end of the container-->
+
+{% include "footer.html" %}

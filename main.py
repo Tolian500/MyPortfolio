@@ -30,7 +30,7 @@ ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 # DEBUG MODE
-DEBUG_MODE = True  # CHANGE BEFORE PRODUCTION
+DEBUG_MODE = False  # CHANGE BEFORE PRODUCTION
 
 
 def gen_qr_by_link(link: str):
@@ -271,6 +271,13 @@ def rsi_main():
         return jsonify({'value': message})
 
     return render_template('rsi.html')
+
+
+@app.route('/dataproject')
+def data_project():
+    return render_template('post.html')
+
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5001, debug=DEBUG_MODE)
