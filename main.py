@@ -29,7 +29,7 @@ ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 # DEBUG MODE
-DEBUG_MODE = True  # CHANGE BEFORE PRODUCTION
+DEBUG_MODE = False  # CHANGE BEFORE PRODUCTION
 
 
 def gen_qr_by_link(link: str):
