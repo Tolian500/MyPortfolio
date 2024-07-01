@@ -1,0 +1,48 @@
+{% include "ph_header.html" %}
+
+<div class="bg-dark">
+    {% include "ph_footer_dark_top.html" %}
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for img in images %}
+                <div class="m-2 p-2">
+                    <img src="{{ img }}" class="img-fluid shadow-4-strong" style="max-height: 100vh; width: auto;"
+                         alt="Wild Landscape"
+                         data-bs-toggle="modal" data-bs-target="#imageModal" onclick="openModal('{{ img }}')"/>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% include "ph_footer_dark.html" %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content bg-dark" onclick="closeModal()">
+            <div class="modal-header border-bottom border-black">
+                <h5 class="modal-title text-light" id="imageModalLabel">Image</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center align-items-center p-0">
+                <img id="modalImage" src="" class="img-fluid w-100" alt="Wild Landscape"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(imgSrc) {
+        document.getElementById('modalImage').src = imgSrc;
+    }
+
+
+</script>
+
+<!--&lt;!&ndash; Bootstrap JS and Popper.js &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>-->

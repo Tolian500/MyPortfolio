@@ -12,6 +12,7 @@ import csv
 from forms import MarketForm, PlaylistForm
 from spotify_agent import find_and_generate_playlist
 from bybit_manager import BybitManager
+import json
 
 tictactoe_images = restart_game()
 moves = 9
@@ -24,13 +25,11 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 
-
-
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 # DEBUG MODE
-DEBUG_MODE = False  # CHANGE BEFORE PRODUCTION
+DEBUG_MODE = True  # CHANGE BEFORE PRODUCTION
 
 
 def gen_qr_by_link(link: str):
@@ -67,8 +66,7 @@ def disable_card(card_dict, ind: int):
     return card_dict
 
 
-
-def get_rsi_data(symbol:str, interval:str, window:int):
+def get_rsi_data(symbol: str, interval: str, window: int):
     start_time = int((time.time() - 60 * 60 * 24) * 1000)  # 24 hours ago in milliseconds
     end_time = int(time.time() * 1000)  # current time in milliseconds
     manager = BybitManager(API_KEY, API_SECRET, window)
@@ -90,10 +88,6 @@ def get_rsi_data(symbol:str, interval:str, window:int):
         first_valid_time = df.index[df['RSI'].notna()].tolist()[0]
         rsi_message = f"RSI for {symbol}: {first_valid_rsi:.2f} at {first_valid_time.strftime('%Y-%m-%d %H:%M:%S')} (Delay: {delay_ms} ms)"
         return rsi_message
-
-
-
-
 
 
 @app.route('/')
@@ -252,10 +246,37 @@ def ph_main():
     return render_template('ph_index.html')
 
 
+@app.route('/photography/albums/Shadows-of-Italy', methods=['GET', 'POST'])
+def ph_album_italy():
+    with open('images.json') as json_file:
+        images = json.load(json_file)
+    return render_template('album_template.html', images=images["Shadows-of-Italy"])
+
+
+@app.route('/photography/albums/Shadows-of-Switzerland', methods=['GET', 'POST'])
+def ph_album_switz():
+    with open('images.json') as json_file:
+        images = json.load(json_file)
+    return render_template('album_template.html', images=images["Shadows-of-Switzerland"])
+
+
+@app.route('/photography/albums/Shadows-of-Czech', methods=['GET', 'POST'])
+def ph_album_czech():
+    with open('images.json') as json_file:
+        images = json.load(json_file)
+    return render_template('album_template.html', images=images["Shadows-of-Czech"])
+
+
+@app.route('/photography/albums/Shadows-of-Turkey', methods=['GET', 'POST'])
+def ph_album_turkey():
+    with open('images.json') as json_file:
+        images = json.load(json_file)
+    return render_template('album_template.html', images=images["Shadows-of-Turkey"])
+
+
 @app.route('/rsi', methods=['GET', 'POST'])
 def rsi_main():
     if request.method == 'POST':
-
         symbol_mapping = {"BTC/USDT": 'BTCUSDT', "ETH/USDT": 'ETHUSDT', "SOL/USDT": 'SOLUSDT'}
         # interval_mapping = {0: '1', 1: '60', 2: '1440'}
         interval_mapping = {0: '1', 1: '60', 2: 'D'}  # Example for Bybit
@@ -276,7 +297,6 @@ def rsi_main():
 @app.route('/dataproject')
 def data_project():
     return render_template('post.html')
-
 
 
 if __name__ == "__main__":
