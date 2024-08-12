@@ -273,6 +273,12 @@ def ph_album_turkey():
         images = json.load(json_file)
     return render_template('album_template.html', images=images["Shadows-of-Turkey"])
 
+@app.route('/photography/albums/Shadows-of-Tatra', methods=['GET', 'POST'])
+def ph_album_tatra():
+    with open('images.json') as json_file:
+        images = json.load(json_file)
+    return render_template('album_template.html', images=images["Shadows-of-Tatra"])
+
 
 @app.route('/rsi', methods=['GET', 'POST'])
 def rsi_main():

@@ -1,0 +1,119 @@
+{% include "ph_header.html" %}
+
+<div class="parent-container"
+     style="height: 100vh">
+
+    <!-- Background Image -->
+    <div class="bg-image img-fluid p-5 text-center mb-0 text-black d-flex align-items-baseline"
+         style="background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/60f356187783325.6590030486f6d.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+"
+    >
+
+        <h1 class="mb-3 h2">Feelings...</h1>
+        <!-- Content inside the background image area -->
+        <div class="container content">
+            <h1>Your Content Here</h1>
+            <p>This content will be on top of the background image and fill the remaining space.</p>
+        </div>
+    </div>
+
+     <nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Second navbar example">-->
+
+        <a class="navbar-brand mb-0" href="#">Anatolii Olenchuk Photography</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
+                aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Albums</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+</div>
+
+
+<!--<div class="container-fluid w-100 h-100 p-0 bg-dark" style="height: 100%;">-->
+<!--    <div class="bg-image img-fluid p-5 text-center mb-0 text-black"-->
+<!--         style="background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/60f356187783325.6590030486f6d.jpg');-->
+<!--                background-size: cover;-->
+<!--                background-repeat: no-repeat;">-->
+
+<!--        <h1 class="mb-3 h2">Feelings...</h1>-->
+
+<!--        <p>-->
+<!--            There is so much depth in these shades of grey-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<div class="container-fluid w-100 p-0"-->
+<!--style="height: 100vh;">-->
+
+<!--    <div class="bg-image  img-fluid p-5 text-center mb-0 text-black"-->
+<!--         style="background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/60f356187783325.6590030486f6d.jpg');-->
+<!--            background-size: cover;-->
+<!--            background-repeat: no-repeat;-->
+<!--            height: 95">-->
+
+<!--        <h1 class="mb-3 h2">Feelings...</h1>-->
+
+<!--        <p class>-->
+<!--            There is so much depth in these shades of grey-->
+<!--        </p>-->
+<!--    </div>-->
+
+
+<!--    &lt;!&ndash;NAVBAR&ndash;&gt;-->
+<!--    <nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Second navbar example">-->
+
+<!--        <a class="navbar-brand mb-0" href="#">Anatolii Olenchuk Photography</a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"-->
+<!--                aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarsExample02">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" aria-current="page" href="#">Home</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">Albums</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">Shop</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">Contact</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--    </nav>-->
+<!--</div>-->
+
+
+<!--<div-->
+<!--  class="bg-image"-->
+<!--  style="-->
+<!--    background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/1b6a1e179135811.64f49e30557e5.jpg');-->
+<!--    height: 100vh;-->
+<!--  "-->
+<!--&gt;</div>-->
+
